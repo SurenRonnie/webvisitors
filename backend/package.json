@@ -1,0 +1,27 @@
+{
+  "name": "visitoriq-backend",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js",
+    "dev:worker": "node --watch src/queues/runWorkers.js",
+    "start:worker": "node src/queues/runWorkers.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "bullmq": "^5.12.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "express-rate-limit": "^7.4.0",
+    "ioredis": "^5.4.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.5.3",
+    "nodemailer": "^6.9.14",
+    "socket.io": "^4.7.5",
+    "ua-parser-js": "^1.0.38"
+  }
+}
