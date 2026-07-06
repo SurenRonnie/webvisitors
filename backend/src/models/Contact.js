@@ -8,7 +8,7 @@ const contactSchema = new mongoose.Schema(
     email: { type: String },
     emailConfidence: { type: Number, min: 0, max: 100 },
     linkedinUrl: { type: String },
-    source: { type: String, enum: ['apollo', 'hunter', 'mock', 'manual'], default: 'mock' },
+    source: { type: String, enum: ['own_dataset', 'mock', 'manual'], default: 'mock' },
   },
   { timestamps: true }
 );

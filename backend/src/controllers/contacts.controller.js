@@ -17,9 +17,8 @@ export async function refreshContacts(req, res) {
   const provider = getContactProvider();
   const found = await provider.findContacts({ domain: company.domain, titles });
 
-  const created = await Contact.insertMany(
-    found.map((c) => ({ ...c, company: company._id, source: provider.constructor.name.toLowerCase().includes('apollo') ? 'apollo' : 'mock' }))
-  );
+  const source = provider.constructor.name.toLowerCase().includes('owndataset') ? 'own_dataset' : 'mock';
+  const created = await Contact.insertMany(found.map((c) => ({ ...c, company: company._id, source })));
 
   res.json({ contacts: created });
 }

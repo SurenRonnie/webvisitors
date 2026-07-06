@@ -10,8 +10,16 @@ const companySchema = new mongoose.Schema(
     hqLocation: { type: String },
     country: { type: String },
     linkedinUrl: { type: String },
+    socialLinks: {
+      linkedinUrl: { type: String },
+      twitterUrl: { type: String },
+      facebookUrl: { type: String },
+      instagramUrl: { type: String },
+      youtubeUrl: { type: String },
+    },
+    logoUrl: { type: String },
     techStack: [String],
-    enrichmentSource: { type: String, enum: ['ipinfo', 'clearbit', 'mock', 'manual'], default: 'mock' },
+    enrichmentSource: { type: String, enum: ['ipinfo', 'clearbit', 'own_dataset', 'mock', 'manual'], default: 'mock' },
     enrichedAt: { type: Date },
   },
   { timestamps: true }

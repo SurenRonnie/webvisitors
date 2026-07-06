@@ -21,8 +21,9 @@ export const env = {
   ipToCompanyProvider: process.env.IP_TO_COMPANY_PROVIDER || 'mock',
   ipinfoApiToken: process.env.IPINFO_API_TOKEN || '',
 
-  contactProvider: process.env.CONTACT_PROVIDER || 'mock',
-  apolloApiKey: process.env.APOLLO_API_KEY || '',
+  companyEnrichmentProvider: process.env.COMPANY_ENRICHMENT_PROVIDER || 'own_dataset',
+
+  contactProvider: process.env.CONTACT_PROVIDER || 'own_dataset',
 
   slackWebhookUrl: process.env.SLACK_WEBHOOK_URL || '',
   smtp: {
