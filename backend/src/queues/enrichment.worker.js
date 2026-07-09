@@ -14,6 +14,9 @@ import Visit from '../models/Visit.js';
 import Session from '../models/Session.js';
 import Contact from '../models/Contact.js';
 import { enqueueScoring } from './scoringQueue.js';
+import { env } from '../config/env.js';
+
+const KNOWN_ENRICHMENT_SOURCES = new Set(['ipinfo', 'cymru']);
 
 async function resolveCompanyForIp(ip) {
   const cached = await getCachedResolution(ip);
@@ -101,7 +104,9 @@ async function handleResolve(job) {
         estimatedRevenue: resolution.estimatedRevenue,
         hqLocation: resolution.hqLocation,
         country: resolution.country,
-        enrichmentSource: resolution.isBusiness ? 'ipinfo' : 'mock',
+        enrichmentSource: resolution.isBusiness && KNOWN_ENRICHMENT_SOURCES.has(env.ipToCompanyProvider)
+          ? env.ipToCompanyProvider
+          : 'mock',
         enrichedAt: new Date(),
       },
     },

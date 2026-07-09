@@ -1,5 +1,6 @@
 import { IpToCompanyProvider } from './IpToCompanyProvider.js';
 import { env } from '../../../config/env.js';
+import { looksResidentialOrHosting } from './asnClassifier.js';
 
 // The standard ipinfo.io/<ip> endpoint only includes `company.{domain,name,type}`
 // as a paid "Business Data" add-on — a free-tier token gets `org` as a plain string
@@ -8,22 +9,6 @@ import { env } from '../../../config/env.js';
 // so we use that instead and approximate "is this a business" via ASN name keywords
 // (the /lite tier has no residential/business classification field).
 const LITE_ENDPOINT = 'https://api.ipinfo.io/lite';
-
-const RESIDENTIAL_ISP_KEYWORDS = [
-  'comcast', 'xfinity', 'spectrum', 'charter', 'cox communications', 'at&t', 'verizon',
-  't-mobile', 'sprint', 'vodafone', 'telstra', 'bt group', 'british telecom', 'deutsche telekom',
-  'orange s.a', 'telefonica', 'virgin media', 'sky broadband', 'centurylink', 'frontier communications',
-  'optimum', 'altice', 'rogers communications', 'bell canada', 'telus', 'jio', 'airtel', 'reliance',
-];
-
-const HOSTING_PROXY_KEYWORDS = [
-  'amazon', 'google cloud', 'microsoft azure', 'digitalocean', 'ovh', 'hetzner', 'cloudflare', 'linode', 'vultr',
-];
-
-function looksResidentialOrHosting(asName = '') {
-  const lower = asName.toLowerCase();
-  return [...RESIDENTIAL_ISP_KEYWORDS, ...HOSTING_PROXY_KEYWORDS].some((keyword) => lower.includes(keyword));
-}
 
 export class IpinfoProvider extends IpToCompanyProvider {
   async resolve(ip) {

@@ -1,4 +1,4 @@
-// File: /home/hi/Documents/suren/webvisitors/frontend/app/dashboard/layout.js
+// File: /home/hi/Documents/suren/repo/webvisitors/frontend/app/dashboard/layout.js
 import * as entry from '../../../../app/dashboard/layout.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

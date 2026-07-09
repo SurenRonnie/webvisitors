@@ -19,7 +19,7 @@ const companySchema = new mongoose.Schema(
     },
     logoUrl: { type: String },
     techStack: [String],
-    enrichmentSource: { type: String, enum: ['ipinfo', 'clearbit', 'own_dataset', 'mock', 'manual'], default: 'mock' },
+    enrichmentSource: { type: String, enum: ['ipinfo', 'cymru', 'clearbit', 'own_dataset', 'mock', 'manual'], default: 'mock' },
     enrichedAt: { type: Date },
   },
   { timestamps: true }
